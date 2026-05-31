@@ -26,6 +26,7 @@ NutriServe is a Nutrition and Food Service Management Web Application for meal p
 - [Git Workflow](#git-workflow)
 - [Command Reference](#command-reference)
 - [Deployment Guide](#deployment-guide)
+- [Public Release](#public-release)
 - [Troubleshooting](#troubleshooting)
 - [Contributors](#contributors)
 - [Future Enhancements](#future-enhancements)
@@ -603,20 +604,24 @@ Recommended release flow:
 
 ## Deployment Guide
 
+Deployment-specific instructions are available in [DEPLOYMENT.md](DEPLOYMENT.md).
+
 ### Backend Deployment Checklist
 
 - Set `FLASK_ENV=production`.
 - Set strong `SECRET_KEY` and `JWT_SECRET_KEY`.
-- Set `AUTO_CREATE_TABLES=0` after migrations or production DB setup is complete.
+- Set `AUTO_CREATE_TABLES=1` only for SQLite demo deployments.
+- Set `AUTO_CREATE_TABLES=0` after moving to a managed production database and migrations.
 - Do not deploy `.env`, `venv`, local SQLite files, or debug logs.
 - Use a production WSGI server such as Gunicorn on Linux.
 - Configure CORS for the deployed frontend domain.
 
-Example production command:
+Render backend settings:
 
 ```bash
-cd backend
-gunicorn wsgi:app
+Build Command: pip install -r requirements.txt
+Start Command: cd backend && gunicorn wsgi:app --bind 0.0.0.0:$PORT
+Health Check Path: /health
 ```
 
 ### Frontend Deployment Checklist
@@ -632,6 +637,20 @@ Possible hosting options:
 | Frontend | GitHub Pages, Netlify, Vercel, static hosting |
 | Backend | Render, Railway, Fly.io, VPS |
 | Database | SQLite for simple demos, PostgreSQL/MySQL for production |
+
+## Public Release
+
+Release notes for `v1.0.0` are available in [RELEASE_NOTES_v1.0.0.md](RELEASE_NOTES_v1.0.0.md).
+
+Create the release from GitHub:
+
+1. Open `https://github.com/07dhanush7/NutriServe`.
+2. Go to `Releases`.
+3. Click `Draft a new release`.
+4. Create tag `v1.0.0` from `main`.
+5. Use title `NutriServe v1.0.0`.
+6. Paste the contents of `RELEASE_NOTES_v1.0.0.md`.
+7. Publish the release.
 
 ## Troubleshooting
 

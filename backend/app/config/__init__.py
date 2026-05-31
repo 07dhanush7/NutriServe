@@ -46,7 +46,7 @@ class TestingConfig(BaseConfig):
 class ProductionConfig(BaseConfig):
     DEBUG = False
     ENV = "production"
-    AUTO_CREATE_TABLES = False
+    AUTO_CREATE_TABLES = os.getenv("AUTO_CREATE_TABLES", "0") == "1"
 
 
 CONFIGS = {
