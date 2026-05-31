@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login - NutriServe</title>
+    <link rel="stylesheet" href="static/css/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="auth-container" style="border-color: #ff4d4d; box-shadow: 0px 10px 30px rgba(255, 77, 77, 0.1);">
+    <h2 style="color: #ff4d4d;">Admin Gateway</h2>
+    <div id="error-msg" class="error" style="color:red; margin-bottom: 10px;"></div>
+
+    <form onsubmit="adminLogin(event)">
+        <input type="email" id="email" placeholder="Admin Email" required>
+        <input type="password" id="password" placeholder="Admin Password" required>
+        <button type="submit" style="background: #ff4d4d;">Access Dashboard</button>
+    </form>
+
+    <p>
+        Not an admin? <a href="login.html" style="color: #ff4d4d;">Return to User Login</a>
+    </p>
+</div>
+
+<script>
+async function adminLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById("email").value.trim().toLowerCase();
+    const password = document.getElementById("password").value;
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+        const result = await response.json();
+        if (!result.success || result.data.user.user_type !== "admin") {
+            document.getElementById("error-msg").innerText = "Invalid admin credentials";
+            return;
+        }
+        localStorage.setItem("access_token", result.data.access_token);
+        localStorage.setItem("currentUser", JSON.stringify({
+            id: result.data.user.id,
+            email: result.data.user.email,
+            username: result.data.user.full_name,
+            user_type: result.data.user.user_type
+        }));
+        window.location.href = "admin.html";
+    } catch (error) {
+        document.getElementById("error-msg").innerText = "Backend is not running";
+    }
+}
+</script>
+</body>
+</html>

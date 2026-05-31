@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Success - NutriServe</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <span class="logo-n">N</span>utri<span class="logo-s">Serve</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right" id="navRight"></div>
+</nav>
+
+<div class="success-wrapper">
+    <!-- CENTER CONTENT -->
+    <div class="success-content">
+        <div class="tick-circle">
+            <div class="tick">OK</div>
+        </div>
+        <h1>Order Confirmed!</h1>
+        <p class="desc">
+            Your healthy meals are scheduled for the week.<br>
+            We will deliver fresh and on time!
+        </p>
+        <p class="order-id">
+            Order ID: <span id="displayOrderId">#NS123456789</span>
+        </p>
+        <p class="mail">
+            You will receive a confirmation email shortly.
+        </p>
+        <a href="menu.html" class="back-btn">Back to Menu</a>
+    </div>
+</div>
+
+<script src="static/js/script.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('orderId');
+        if (orderId) {
+            document.getElementById("displayOrderId").innerText = "#" + orderId;
+        }
+    });
+</script>
+</body>
+</html>
+

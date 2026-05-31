@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu - NutriServe</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <span class="logo-n">N</span>utri<span class="logo-s">Serve</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right" id="navRight"></div>
+</nav>
+
+<section class="category-section">
+    <h1>Choose Your Category</h1>
+    <p>Meals curated for your specific needs</p>
+    <div class="cards">
+        <!-- Elders -->
+        <div class="card" onclick="location.href='category.html?cat=elders'">
+            <img src="static/images/elders.jpg" class="card-img">
+            <div class="overlay green">
+                <h2>Elders</h2>
+                <p>Balanced meals for a healthy lifestyle</p>
+                <span>10 Meals</span>
+            </div>
+        </div>
+
+        <!-- Gym -->
+        <div class="card" onclick="location.href='category.html?cat=gym'">
+            <img src="static/images/gym.jpg" class="card-img">
+            <div class="overlay red">
+                <h2>Gym Lovers</h2>
+                <p>High-protein meals to fuel your goals</p>
+                <span>10 Meals</span>
+            </div>
+        </div>
+
+        <!-- Kids -->
+        <div class="card" onclick="location.href='category.html?cat=kids'">
+            <img src="static/images/kids.jpg" class="card-img">
+            <div class="overlay purple">
+                <h2>Kids</h2>
+                <p>Nutritious & tasty meals for growing kids</p>
+                <span>10 Meals</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="static/js/script.js"></script>
+</body>
+</html>

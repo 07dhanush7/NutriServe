@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout - NutriServe</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <span class="logo-n">N</span>utri<span class="logo-s">Serve</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right" id="navRight"></div>
+</nav>
+
+<section class="checkout-page">
+    <h1>Checkout</h1>
+    <div class="checkout-layout">
+        <!-- LEFT SIDE -->
+        <div class="checkout-form">
+            <form onsubmit="confirmOrder(event)">
+                <p style="color:red;">*Please select payment method and enter address</p>
+                <label>Delivery Location</label>
+                <input type="text" id="address" placeholder="Enter your full address" required>
+
+                <label>Payment Method</label>
+                <div class="payment-options">
+                    <label class="payment-card">
+                        <input type="radio" name="payment" value="UPI" required>
+                        <img src="static/images/upi.png">
+                        <span>UPI</span>
+                    </label>
+                    <label class="payment-card">
+                        <input type="radio" name="payment" value="Card">
+                        <img src="static/images/card.jpg">
+                        <span>Card</span>
+                    </label>
+                    <label class="payment-card">
+                        <input type="radio" name="payment" value="COD">
+                        <img src="static/images/cod.jpg">
+                        <span>Cash on Delivery</span>
+                    </label>
+                </div>
+
+                <!-- UPI OPTIONS -->
+                <div id="upi-options" style="display:none;">
+                    <h3>Select UPI App</h3>
+                    <div class="upi-apps">
+                        <a href="https://www.phonepe.com/" target="_blank" class="upi-btn">
+                            <img src="static/images/phonepe.jpg">
+                            <span>PhonePe</span>
+                        </a>
+                        <a href="https://pay.google.com/" target="_blank" class="upi-btn">
+                            <img src="static/images/gpay.jpg">
+                            <span>GPay</span>
+                        </a>
+                        <a href="https://paytm.com/" target="_blank" class="upi-btn">
+                            <img src="static/images/paytm.jpg">
+                            <span>Paytm</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARD OPTIONS -->
+                <div id="card-options" style="display:none;">
+                    <input type="text" placeholder="Card Number">
+                    <input type="text" placeholder="Expiry">
+                    <input type="text" placeholder="CVV">
+                </div>
+
+                <div class="confirm-btn-container">
+                    <button type="submit" class="confirm-btn">Confirm Order</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="checkout-summary">
+            <h3>Total Items</h3>
+            <h2 id="checkoutTotalItems">0</h2>
+            <h3>Total Amount</h3>
+            <h2 id="checkoutTotalAmount">Rs.0</h2>
+            <p class="note">Your meals will be delivered as per schedule.</p>
+        </div>
+    </div>
+</section>
+
+<!-- TOAST -->
+<div id="toast" class="toast">OK <span id="toast-msg">Cash on Delivery selected</span></div>
+
+<script src="static/js/script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let radios = document.querySelectorAll('input[name="payment"]');
+    radios.forEach(radio => {
+        radio.addEventListener("click", function() {
+            document.getElementById("upi-options").style.display = "none";
+            document.getElementById("card-options").style.display = "none";
+
+            if (this.value === "COD") showToast("Cash on Delivery selected");
+            if (this.value === "UPI") document.getElementById("upi-options").style.display = "block";
+            if (this.value === "Card") document.getElementById("card-options").style.display = "block";
+        });
+    });
+});
+
+function showToast(text) {
+    let toast = document.getElementById("toast");
+    let msg = document.getElementById("toast-msg");
+    msg.innerText = text;
+    toast.classList.remove("show");
+    setTimeout(() => toast.classList.add("show"), 10);
+    setTimeout(() => toast.classList.remove("show"), 2000);
+}
+</script>
+</body>
+</html>
+

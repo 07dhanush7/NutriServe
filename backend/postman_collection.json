@@ -1,0 +1,87 @@
+{
+  "info": {
+    "name": "Smart Canteen Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://127.0.0.1:5000" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": { "method": "GET", "url": "{{base_url}}/health" }
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"full_name\":\"John Doe\",\"email\":\"john@example.com\",\"phone\":\"0987654321\",\"password\":\"user123\"}"
+        },
+        "url": "{{base_url}}/api/auth/register"
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"john@example.com\",\"password\":\"user123\"}"
+        },
+        "url": "{{base_url}}/api/auth/login"
+      }
+    },
+    {
+      "name": "Profile",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{base_url}}/api/users/profile"
+      }
+    },
+    {
+      "name": "Meals",
+      "request": { "method": "GET", "url": "{{base_url}}/api/meals/" }
+    },
+    {
+      "name": "Create Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"week_start_date\":\"2026-05-25\",\"delivery_address\":\"Bangalore\",\"items\":[{\"meal_id\":1,\"day_of_week\":\"Monday\",\"delivery_time\":\"12:00\",\"quantity\":1}]}"
+        },
+        "url": "{{base_url}}/api/orders/"
+      }
+    },
+    {
+      "name": "Create Payment",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{\"order_id\":1,\"payment_method\":\"COD\"}" },
+        "url": "{{base_url}}/api/payments/create"
+      }
+    },
+    {
+      "name": "Admin Dashboard",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{base_url}}/api/admin/dashboard"
+      }
+    }
+  ]
+}

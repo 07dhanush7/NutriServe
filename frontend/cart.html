@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart - NutriServe</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <span class="logo-n">N</span>utri<span class="logo-s">Serve</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right" id="navRight"></div>
+</nav>
+
+<section class="cart-page">
+    <h1>Your Weekly Meal Planner</h1>
+    <p>Select the day and time for each meal</p>
+
+    <div class="cart-layout">
+        <!-- LEFT TABLE -->
+        <div class="cart-table">
+            <div class="table-head">
+                <span>Meal</span>
+                <span>Price</span>
+                <span>Day</span>
+                <span>Time</span>
+                <span>Action</span>
+            </div>
+            <div id="cartTableBody">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+
+        <!-- RIGHT SUMMARY -->
+        <div class="cart-summary">
+            <h3>Total Meals</h3>
+            <p id="totalItems">Total Meals Added: 0</p>
+            <h3>Total Amount</h3>
+            <h2 id="totalAmount">Rs.0</h2>
+            <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
+        </div>
+    </div>
+</section>
+
+<script src="static/js/script.js"></script>
+</body>
+</html>
+
