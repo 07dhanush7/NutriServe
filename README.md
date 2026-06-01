@@ -336,29 +336,7 @@ docs/screenshots/home.png
 docs/screenshots/menu.png
 docs/screenshots/cart.png
 docs/screenshots/admin-dashboard.png
-```
-
-Suggested Markdown format:
-
-```markdown
-![Home Page](docs/screenshots/home.png)
-![Menu Page](docs/screenshots/menu.png)
-![Admin Dashboard](docs/screenshots/admin-dashboard.png)
-```
-
 ## GitHub Collaboration
-
-### Add Collaborators
-
-Repository owner steps:
-
-1. Open the GitHub repository.
-2. Go to `Settings`.
-3. Select `Collaborators and teams`.
-4. Click `Add people`.
-5. Add each developer by GitHub username or profile URL.
-6. Assign suitable access, usually `Write` for developers.
-
 Collaborators:
 
 | Developer | Role | GitHub |
